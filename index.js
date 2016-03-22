@@ -423,7 +423,10 @@ function SelectProject(openStoryID) {
 	
 	Kanban.BuildListGUI();
 
-	AutoAdjustListWidth();
+	if(DefaultSettings.autoResizeColumns) {
+		AutoAdjustListWidth();
+		window.addEventListener("resize", AutoAdjustListWidth);
+	}
 
 	VerifyDefaultFitlers();
 
