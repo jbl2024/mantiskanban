@@ -428,7 +428,7 @@ function SelectProject(openStoryID) {
 		window.addEventListener("resize", AutoAdjustListWidth);
 	}
 
-	VerifyDefaultFitlers();
+	VerifyDefaultFilters();
 
 	if(Kanban.CurrentProject.ParentProject) {
 		document.getElementById("selected-project-name").innerHTML = Kanban.CurrentProject.ParentProject.Name + "&nbsp;&nbsp;/&nbsp;&nbsp;" + Kanban.CurrentProject.Name;	
@@ -465,7 +465,7 @@ function SelectProject(openStoryID) {
 	}
 }
 
-function VerifyDefaultFitlers() {
+function VerifyDefaultFilters() {
 	var foundClosedFilter = false;
 	var foundFilter = false;
 	for(var fcount = 0; fcount < Mantis.ProjectFilterList.length; fcount++) {

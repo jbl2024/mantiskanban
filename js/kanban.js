@@ -305,19 +305,19 @@ function Drop(event) {
 
 		if(event.target.getAttribute("class") == "kanbanlist" && sourceElement.getAttribute("class").indexOf("storyinfobutton") < 0) {
 			listToDropIn = event.target;
-			UpdateListForCanbanStory(sourceElement.Story, listToDropIn.List, UpdateKanbanStoryComplete)
+			UpdateListForKanbanStory(sourceElement.Story, listToDropIn.List, UpdateKanbanStoryComplete)
 			listToDropIn.Container.insertBefore(sourceElement, listToDropIn.Container.lastChild);
 		} else if(event.target.getAttribute("class") == "kanbanlistdroparea") {
 			listToDropIn = document.getElementById(event.target.getAttribute("listid"));
-			UpdateListForCanbanStory(sourceElement.Story, listToDropIn.List, UpdateKanbanStoryComplete)
+			UpdateListForKanbanStory(sourceElement.Story, listToDropIn.List, UpdateKanbanStoryComplete)
 			listToDropIn.Container.appendChild(sourceElement);
 		} else if (event.target.getAttribute("class") == "kanbanlisttitle") {
 			listToDropIn = document.getElementById(event.target.getAttribute("listid"));
-			UpdateListForCanbanStory(sourceElement.Story, listToDropIn.List, UpdateKanbanStoryComplete)
+			UpdateListForKanbanStory(sourceElement.Story, listToDropIn.List, UpdateKanbanStoryComplete)
 			listToDropIn.Container.insertBefore(sourceElement, listToDropIn.Container.firstChild);
 		} else {
 			listToDropIn = document.getElementById(event.target.getAttribute("listid"));
-			UpdateListForCanbanStory(sourceElement.Story, listToDropIn.List, UpdateKanbanStoryComplete)
+			UpdateListForKanbanStory(sourceElement.Story, listToDropIn.List, UpdateKanbanStoryComplete)
 			sourceElementDropDiv.classList.remove("over");
 			if(targetStoryDiv !== undefined && targetStoryDiv != null) {
 				listToDropIn.Container.insertBefore(sourceElement, targetStoryDiv);
@@ -442,7 +442,7 @@ function UpdateStoryStatusWhenCustomFieldUpdated(UpatedStory, CustomFieldName, C
 	}
 }
 
-function UpdateListForCanbanStory(KanbanStoryToUpdate, KanbanListToMoveTo, UpdateKanbanStoryCallback) {
+function UpdateListForKanbanStory(KanbanStoryToUpdate, KanbanListToMoveTo, UpdateKanbanStoryCallback) {
 	var updateIssue = null;
 	if(KanbanStoryToUpdate.UsesCustomField) {
 		UpdateStoryStatusWhenCustomFieldUpdated(KanbanStoryToUpdate, Kanban._listIDField, KanbanListToMoveTo.ID);
