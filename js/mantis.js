@@ -622,14 +622,15 @@ var Mantis = {
 		},
 
 		Note : {
-			NewNote : function(notetext) {
+			NewNote : function(notetext, private) {
 				return {
 					"reporter" : {
 						"id" : Kanban.CurrentUser.ID,
 						"name" : Kanban.CurrentUser.Name
 					},
 					"date_submitted" : new Date(),
-					"text" : notetext
+					"text" : notetext,
+					"view_state" : (private)?"private":"public"
 				};
 			}
 		},

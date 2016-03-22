@@ -518,13 +518,13 @@ function HandleDragLeave(e) {
 }
 
 
-function SaveNewNote(storyID, noteText) {
+function SaveNewNote(storyID, noteText, private) {
 	try {
 		noteText = FormatTextAsHTML(noteText);
 		Kanban.BlockUpdates = true;
 		StartLoading();
 		var editStory = Kanban.GetStoryByFieldValue("ID", storyID);
-		var newNote = Mantis.UpdateStructureMethods.Note.NewNote(noteText);
+		var newNote = Mantis.UpdateStructureMethods.Note.NewNote(noteText, private);
 		Mantis.IssueNoteAdd(editStory.ID, newNote);
 		editStory = Kanban.UpdateUnderlyingStorySource(editStory, true);
 		AddNotesToStoryEditForm(editStory);
