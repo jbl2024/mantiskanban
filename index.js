@@ -156,8 +156,14 @@ function Login() {
 	log("Login() called.");
 	
 	document.getElementById("username").focus();
-	Mantis.ConnectURL = document.getElementById("mantisURL").value;
-	
+
+	if (DefaultSettings.connectURL != undefined) {
+		Mantis.ConnectURL = DefaultSettings.connectURL;
+	}
+	if (document.getElementById("mantisURL").value != "") {
+		Mantis.ConnectURL = document.getElementById("mantisURL").value;
+	}
+
 	try {
 		var retObj = Mantis.Login(document.getElementById("username").value, document.getElementById("password").value);
 		Kanban.CurrentUser = new KanbanUser(retObj.account_data);
