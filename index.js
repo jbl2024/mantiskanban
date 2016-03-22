@@ -453,6 +453,27 @@ function SelectProject(openStoryID) {
 		}
 	} else {
 		var retObj = Mantis.ProjectGetIssues(Mantis.CurrentProjectID, 0, 0);
+
+		//OLA
+		//Sort
+		if (Mantis.CustomFieldToSort != undefined && Mantis.CustomFieldToSort !="") {
+			retObj.sort(function(a,b) {
+				valCF = function(a) {
+					valA = 0;
+					for(var id in a.custom_fields) {
+						if(a.custom_fields[id].field.name == Mantis.CustomFieldToSort) {
+							if(a.custom_fields[id].value != undefined && a.custom_fields[id].value !="") {
+								valA = a.custom_fields[id].value;
+							}
+						}
+					}
+					return valA;
+				}
+				return -(valCF(a) - valCF(b));
+			});
+		}
+		//OLA
+
 		CreateKanbanStoriesFromMantisIssues(retObj);
 		CreateListOfAssignedStories();
 		BuildKanbanAssignedUsersGUI();		

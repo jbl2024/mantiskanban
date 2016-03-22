@@ -423,6 +423,15 @@ function UpdateStoryFromFormData() {
 		thisStory.StatusID = document.getElementById("edit-status").value;
 		thisStory.Reproduce = document.getElementById("edit-reproduce").value;
 		thisStory.CategoryID = document.getElementById("edit-category").value;
+
+		for (var id in thisStory.StorySource.custom_fields) {
+			for (var key in Mantis.CustomFieldsToManage) {
+				if (thisStory.StorySource.custom_fields[id].field.name == Mantis.CustomFieldsToManage[key]) {
+					thisStory.StorySource.custom_fields[id].value = document.getElementById("edit-" + key).value;
+				}
+			}
+		}
+
 		Mantis.IssueUpdate(thisStory.ID, thisStory.StorySource, UpdateKanbanStoryComplete);
 
 		CloseEditStory();
@@ -1239,6 +1248,14 @@ function EditStory(storyID) {
 	$("#edit-summary").val(thisStory.Summary);
 	$("#edit-description").val(thisStory.Description);
 	$("#edit-reproduce").val(thisStory.Reproduce);
+
+	for(var id in thisStory.StorySource.custom_fields){
+		for(var key in Mantis.CustomFieldsToManage) {
+			if(thisStory.StorySource.custom_fields[id].field.name == Mantis.CustomFieldsToManage[key]) {
+				$("#edit-"+key).val(thisStory.StorySource.custom_fields[id].value);
+			}
+		}
+	}
 
 	$("#edit-newnotetext").val("");
 

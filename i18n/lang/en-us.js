@@ -4,6 +4,10 @@ var langObj = {
 "textAddTag":"Add",
 "textAssignedTo":"Assigned To:",
 "textAttachments":"Attachments",
+//OLA
+"textBusinessPriority":"Business Priority",
+"textEstimation":"Estimation",
+//OLA
 "textCategory":"Category",
 "textChooseFile":"Choose File To Add...",
 "textClose":"Close",

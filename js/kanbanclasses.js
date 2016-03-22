@@ -582,16 +582,13 @@ KanbanStory.prototype = {
 		var storyDivTitleSecondRow = document.createElement("div");
 		storyDivTitleSecondRow.setAttribute("class", "kanbanstorytitlesecondrow");
 
+		/* OLA
 		if(this.CategoryID != null) {
 			var storyDivTitleSecondIcon = document.createElement("span");
 			storyDivTitleSecondIcon.setAttribute("class", "glyphicon glyphicon-" + Kanban.GetCategoryIcon(this.CategoryID));
 			storyDivTitleSecondRow.appendChild(storyDivTitleSecondIcon);
 		}
-		// if(this.Tags.length > 0) {
-		// 	var storyDivTitleSecondIcon = document.createElement("span");
-		// 	storyDivTitleSecondIcon.setAttribute("class", "glyphicon glyphicon-tags");
-		// 	storyDivTitleSecondRow.appendChild(storyDivTitleSecondIcon);
-		// }
+		OLA */
 		if(this.Notes.length > 0) {
 			var storyDivTitleSecondIcon = document.createElement("span");
 			storyDivTitleSecondIcon.setAttribute("class", "glyphicon glyphicon-th-list");
@@ -607,6 +604,8 @@ KanbanStory.prototype = {
 			storyDivTitleSecondIcon.setAttribute("class", "glyphicon glyphicon-retweet");
 			storyDivTitleSecondRow.appendChild(storyDivTitleSecondIcon);
 		}
+
+		/* OLA
 		if(this.Tags.length > 0) {
 			for(var tcnt = 0; tcnt < this.Tags.length; tcnt++) {
 				var thisTag = this.Tags[tcnt];
@@ -619,6 +618,23 @@ KanbanStory.prototype = {
 			}
 
 		}
+		OLA */
+
+		//OLA
+		for(var ci = 0; ci < this.StorySource.custom_fields.length; ci++) {
+			for (var id in Mantis.CustomFieldsToManage) {
+				if(this.StorySource.custom_fields[ci].field.name == Mantis.CustomFieldsToManage[id]) {
+					var tagDiv = document.createElement("span");
+					tagDiv.setAttribute("class", "label");
+					tagDiv.setAttribute("title", Mantis.CustomFieldsToManage[id]);
+					tagDiv.setAttribute("style", GetStyleCodeFor3Digits(this.StorySource.custom_fields[ci].field.name))
+					tagDiv.innerHTML = this.StorySource.custom_fields[ci].value;
+					storyDivTitleSecondRow.appendChild(tagDiv);
+				}
+			}
+		}
+		//OLA
+
 		storyDivTitle.appendChild(storyDivTitleSecondRow);
 		storyContainerDiv.appendChild(storyDivTitle);
 
