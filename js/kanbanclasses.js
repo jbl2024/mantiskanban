@@ -637,15 +637,17 @@ KanbanStory.prototype = {
 		}
 
 		//OLA
-		for(var ci = 0; ci < this.StorySource.custom_fields.length; ci++) {
-			for (var id in Mantis.CustomFieldsToManage) {
-				if(this.StorySource.custom_fields[ci].field.name == Mantis.CustomFieldsToManage[id]) {
-					var tagDiv = document.createElement("span");
-					tagDiv.setAttribute("class", "label");
-					tagDiv.setAttribute("title", Mantis.CustomFieldsToManage[id]);
-					tagDiv.setAttribute("style", GetStyleCodeFor3Digits(this.StorySource.custom_fields[ci].field.name))
-					tagDiv.innerHTML = this.StorySource.custom_fields[ci].value;
-					storyDivTitleSecondRow.appendChild(tagDiv);
+		if(this.StorySource.custom_fields) {
+			for (var ci = 0; ci < this.StorySource.custom_fields.length; ci++) {
+				for (var id in Mantis.CustomFieldsToManage) {
+					if (this.StorySource.custom_fields[ci].field.name == Mantis.CustomFieldsToManage[id]) {
+						var tagDiv = document.createElement("span");
+						tagDiv.setAttribute("class", "label");
+						tagDiv.setAttribute("title", Mantis.CustomFieldsToManage[id]);
+						tagDiv.setAttribute("style", GetStyleCodeFor3Digits(this.StorySource.custom_fields[ci].field.name))
+						tagDiv.innerHTML = this.StorySource.custom_fields[ci].value;
+						storyDivTitleSecondRow.appendChild(tagDiv);
+					}
 				}
 			}
 		}
