@@ -211,6 +211,10 @@ div.notecontainer {
 	display: inline;
 	height: 85px;
 }
+#projectlist{
+	max-height: 400px;
+	overflow: auto;
+}
 .projectlist{
 	display: inline;
 	margin-top: 10px;
