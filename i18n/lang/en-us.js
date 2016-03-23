@@ -44,6 +44,7 @@ var langObj = {
 "textTag1":"Tag 1",
 "textTag2":"Tag 2",
 "textTags":"Tags (click to delete):",
+"textTasks":"Tasks",
 "textUploadAttachments":"Upload Attachments To Story",
 "textUrgent":"Urgent"
 

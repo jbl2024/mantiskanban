@@ -796,7 +796,7 @@ function AddAttachmentToStoryEditForm(KanbanStory) {
 
 function SaveNewTask(storyID, taskDescription) {
 	/// Requires mantis 1.3.0 at minimum
-	if(Mantis.Version() < "1.3.0") reutrn;
+	if(Mantis.Version() < "1.3.0") return;
 
 	try {
 		taskDescription = FormatTextAsHTML(taskDescription);
@@ -883,7 +883,7 @@ function ChangeTaskDescription(storyID, taskID, desc) {
 function AddTasksToStoryEditForm(KanbanStory) {
 
 	/// Requires mantis 1.3.0 at minimum
-	if(Mantis.Version() < "1.3.0") reutrn;
+	if(Mantis.Version() < "1.3.0") return;
 
 	var taskContainer = document.getElementById("edit-story-tasks-container");
 	var taskSaveButton = document.getElementById("edit-story-new-task-save-button");
@@ -1354,11 +1354,27 @@ function EditStory(storyID) {
 			selectEditCategory.selectedIndex = i;
 		}
 	}
-	/// Requires mantis 1.3.0 at minimum
-	if(Mantis.Version() > "1.3.0") AddTasksToStoryEditForm(thisStory);
+
 
 	/// Requires mantis 1.3.0 at minimum
-	if(Mantis.Version() > "1.3.0") AddHistoryToStoryEditForm(thisStory);
+	if(Mantis.Version() > "1.3.0")
+	{
+		AddTasksToStoryEditForm(thisStory);
+	}
+	else {
+		document.getElementById("tab5").style.visibility = "hidden";
+		//document.getElementById("tabs-5").setAttribute("test", "ret");
+	}
+
+	/// Requires mantis 1.3.0 at minimum
+	if(Mantis.Version() > "1.3.0")
+	{
+		AddHistoryToStoryEditForm(thisStory);
+	}
+	else {
+		document.getElementById("tab6").style.visibility = "hidden";
+	}
+
 
 	AddNotesToStoryEditForm(thisStory);
 
