@@ -592,18 +592,22 @@ KanbanStory.prototype = {
 		if(this.Notes.length > 0) {
 			var storyDivTitleSecondIcon = document.createElement("span");
 			storyDivTitleSecondIcon.setAttribute("class", "glyphicon glyphicon-th-list");
+			storyDivTitleSecondIcon.setAttribute("title", this.Notes.length+ " notes");
 			storyDivTitleSecondRow.appendChild(storyDivTitleSecondIcon);
 		}		
 		if(this.Attachments.length > 0) {
 			var storyDivTitleSecondIcon = document.createElement("span");
 			storyDivTitleSecondIcon.setAttribute("class", "glyphicon glyphicon-file");
+			storyDivTitleSecondIcon.setAttribute("title", this.Attachments.length + " attachments");
 			storyDivTitleSecondRow.appendChild(storyDivTitleSecondIcon);
 		}
+		/* OLA
 		if(this.RelatedStories.length > 0) {
 			var storyDivTitleSecondIcon = document.createElement("span");
 			storyDivTitleSecondIcon.setAttribute("class", "glyphicon glyphicon-retweet");
 			storyDivTitleSecondRow.appendChild(storyDivTitleSecondIcon);
 		}
+		 OLA */
 
 		/* OLA
 		if(this.Tags.length > 0) {
@@ -619,6 +623,18 @@ KanbanStory.prototype = {
 
 		}
 		OLA */
+
+		if(this.Tags.length > 0) {
+			var tagList = "";
+			for(var tcnt = 0; tcnt < this.Tags.length; tcnt++) {
+				var thisTag = this.Tags[tcnt];
+				tagList += thisTag.name + " | ";
+			}
+			var storyDivTitleSecondIcon = document.createElement("span");
+			storyDivTitleSecondIcon.setAttribute("class", "glyphicon glyphicon-star");
+			storyDivTitleSecondIcon.setAttribute("title", tagList);
+			storyDivTitleSecondRow.appendChild(storyDivTitleSecondIcon);
+		}
 
 		//OLA
 		for(var ci = 0; ci < this.StorySource.custom_fields.length; ci++) {
