@@ -1252,6 +1252,14 @@ function EditStory(storyID) {
 	for(var id in thisStory.StorySource.custom_fields){
 		for(var key in Mantis.CustomFieldsToManage) {
 			if(thisStory.StorySource.custom_fields[id].field.name == Mantis.CustomFieldsToManage[key]) {
+				if(!$("#edit-"+key).length) {
+				$("#CustomFieldTemplate").append('<div class="control-group col-xs-6">'+
+					'<label class="control-label" for="edit-'+key+'">'+Mantis.CustomFieldsToManage[key]+'</label>'+
+					'<div class="controls">' +
+					'<input name="edit-'+key+'" id="edit-'+key+'" class="form-control  input-small" type="text" ></input>' +
+					'</div>' +
+					'</div>');
+				}
 				$("#edit-"+key).val(thisStory.StorySource.custom_fields[id].value);
 			}
 		}
