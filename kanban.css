@@ -778,6 +778,9 @@ div[priority="60"], div[priority="immediate"], div[priority="馬上"] {
 	-ms-text-overflow: ellipsis;*/
 	word-wrap: break-word;
 }
+.project-title {
+	font-size: 9px;
+}
 .storyinfobutton{
 	display: table-cell;
 	width: 27px;

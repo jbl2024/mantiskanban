@@ -577,7 +577,7 @@ KanbanStory.prototype = {
 		storyDivTitle.setAttribute("listid", "listid" + this.ListID);
 		storyDivTitle.setAttribute("storyid", "storydiv" + this.ID);
 		storyDivTitle.setAttribute("dropdivid", "dropdiv" + this.ID);
-		storyDivTitle.innerHTML += "[" + this.ProjectName + "]<br/>" + this.Summary;
+		storyDivTitle.innerHTML += "<div class='project-title'>[" + this.ProjectName + "]</div>" + this.Summary;
 
 		var storyDivTitleSecondRow = document.createElement("div");
 		storyDivTitleSecondRow.setAttribute("class", "kanbanstorytitlesecondrow");
