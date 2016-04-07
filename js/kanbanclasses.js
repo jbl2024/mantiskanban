@@ -70,7 +70,7 @@ KanbanProject.prototype = {
 	},
 
 	HasFilterID : function() {
-		
+
 	},
 
 	get Users() {
@@ -95,7 +95,7 @@ var KanbanList = function(RawObject) {
 		this._stories = [];
 		this.Element = null;
 		this.UsesCustomField = false;
-}	
+}
 
 KanbanList.prototype = {
 
@@ -183,7 +183,7 @@ KanbanStory.prototype = {
 				if(kanbanList.ID == this.StatusID) {
 					return kanbanList;
 				}
-			}				
+			}
 		}
 		/// Return the first list if none are available
 		return Kanban.Lists[0]
@@ -198,7 +198,7 @@ KanbanStory.prototype = {
 			}
 		} else {
 			this.StatusID = value.ID;
-		}				
+		}
 	},
 
 	get ListID() {
@@ -221,7 +221,7 @@ KanbanStory.prototype = {
 
 	get ProjectName() {
 		return this.StorySource.project.name;
-	}, 
+	},
 	set ProjectName(value) {
 		this.StorySource.project.name = value
 	},
@@ -313,7 +313,7 @@ KanbanStory.prototype = {
 	get Attachments() {
 		return this.StorySource.attachments;
 	},
-	
+
 
 	get Description() {
 		return this.StorySource.description;
@@ -337,7 +337,7 @@ KanbanStory.prototype = {
 
 	get HandlerID() {
 		return this.StorySource.handler !== undefined ? this.StorySource.handler.id : "";
-	}, 
+	},
 
 	set HandlerID(value) {
 		if(value === null && this.StorySource.handler === undefined) {
@@ -455,8 +455,8 @@ KanbanStory.prototype = {
 				}
 			}
 		}
-		
-		
+
+
 	},
 
 	HasTag : function(tagID) {
@@ -465,9 +465,9 @@ KanbanStory.prototype = {
 				if(this.StorySource.tags[qi].id == tagID) return true;
 			}
 		}
-		
+
 		return false;
-		
+
 	},
 	Save: function() {
 		this.StorySource.summary = this.Summary;
@@ -531,7 +531,7 @@ KanbanStory.prototype = {
 			storyContainerDiv.classList.add("mystory");
 		}
 		storyDiv.appendChild(storyContainerDiv);
-	
+
 		var kanbanStoryHeaderAreaDiv = document.createElement("div");
 		kanbanStoryHeaderAreaDiv.setAttribute("class", "kanbanstoryheaderarea");
 		kanbanStoryHeaderAreaDiv.setAttribute("listid", "listid" + this.ListID);
@@ -569,15 +569,15 @@ KanbanStory.prototype = {
 		storyDivButton.innerHTML = this.HandlerName.substring(0, 1).toUpperCase() + this.HandlerName.substring(1, 2);
 		storyDivButtonContainer.appendChild(storyDivButton);
 
-		var storyDivTitle = document.createElement("span");
-		
+		var storyDivTitle = document.createElement("div");
+
 		storyDivTitle.setAttribute("class", "kanbanstorytitle");
 		storyDivTitle.setAttribute("id", "storytitle" + this.ID);
 		//storyDivTitle.setAttribute("onclick", "EditStory('" + this.ID + "');");
 		storyDivTitle.setAttribute("listid", "listid" + this.ListID);
 		storyDivTitle.setAttribute("storyid", "storydiv" + this.ID);
 		storyDivTitle.setAttribute("dropdivid", "dropdiv" + this.ID);
-		storyDivTitle.innerHTML += this.Summary;
+		storyDivTitle.innerHTML += "[" + this.ProjectName + "]<br/>" + this.Summary;
 
 		var storyDivTitleSecondRow = document.createElement("div");
 		storyDivTitleSecondRow.setAttribute("class", "kanbanstorytitlesecondrow");
@@ -594,7 +594,7 @@ KanbanStory.prototype = {
 			storyDivTitleSecondIcon.setAttribute("class", "glyphicon glyphicon-th-list");
 			storyDivTitleSecondIcon.setAttribute("title", this.Notes.length+ " notes");
 			storyDivTitleSecondRow.appendChild(storyDivTitleSecondIcon);
-		}		
+		}
 		if(this.Attachments.length > 0) {
 			var storyDivTitleSecondIcon = document.createElement("span");
 			storyDivTitleSecondIcon.setAttribute("class", "glyphicon glyphicon-file");
@@ -704,4 +704,3 @@ Kanban.UpdateUnderlyingStorySource = function(originalStory) {
 	originalStory.StorySource = mantisIssue;
 	return originalStory;
 };
-
