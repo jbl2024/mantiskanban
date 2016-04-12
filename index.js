@@ -459,7 +459,7 @@ function SelectProject(openStoryID) {
 		if (Mantis.CustomFieldToSort != undefined && Mantis.CustomFieldToSort !="") {
 			retObj.sort(function(a,b) {
 				valCF = function(a) {
-					valA = 0;
+					valA = 900;
 					for(var id in a.custom_fields) {
 						if(a.custom_fields[id].field.name == Mantis.CustomFieldToSort) {
 							if(a.custom_fields[id].value != undefined && a.custom_fields[id].value !="") {
@@ -469,7 +469,7 @@ function SelectProject(openStoryID) {
 					}
 					return valA;
 				}
-				return -(valCF(a) - valCF(b));
+				return (valCF(a) - valCF(b));
 			});
 		}
 		//OLA
